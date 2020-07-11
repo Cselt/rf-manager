@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ElectronService } from '@rf-manager/communication';
 
 @Component({
   selector: 'rf-manager-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'web';
+
+  version: string;
+
+  constructor(private electron: ElectronService) {
+    this.version = electron.getAppVersion();
+  }
 }

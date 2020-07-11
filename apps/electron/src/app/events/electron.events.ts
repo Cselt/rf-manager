@@ -3,7 +3,7 @@
  * between the frontend to the electron backend.
  */
 
-import { app, ipcMain } from 'electron';
+import { app, ipcMain, IpcMainEvent } from 'electron';
 import { environment } from '../../environments/environment';
 
 export default class ElectronEvents {
@@ -13,10 +13,10 @@ export default class ElectronEvents {
 }
 
 // Retrieve app version
-ipcMain.handle('get-app-version', (event) => {
+ipcMain.on('get-app-version', (event: IpcMainEvent) => {
   console.log(`Fetching application version... [v${environment.version}]`);
 
-  return environment.version;
+  event.returnValue = environment.version;
 });
 
 // Handle App termination
