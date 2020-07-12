@@ -21,13 +21,8 @@
             "polyfills": "apps/web/src/polyfills.ts",
             "tsConfig": "apps/web/tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "apps/web/src/favicon.ico",
-              "apps/web/src/assets"
-            ],
-            "styles": [
-              "apps/web/src/styles.scss"
-            ],
+            "assets": ["apps/web/src/favicon.ico", "apps/web/src/assets"],
+            "styles": ["apps/web/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -85,10 +80,7 @@
               "apps/web/tsconfig.app.json",
               "apps/web/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/web/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/web/**/*"]
           }
         },
         "test": {
@@ -123,13 +115,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/web-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/web-e2e/**/*"
-            ]
+            "tsConfig": ["apps/web-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/web-e2e/**/*"]
           }
         }
       }
@@ -147,9 +134,7 @@
             "outputPath": "dist/apps/electron",
             "main": "apps/electron/src/main.ts",
             "tsConfig": "apps/electron/tsconfig.app.json",
-            "assets": [
-              "apps/electron/src/assets"
-            ]
+            "assets": ["apps/electron/src/assets"]
           },
           "configurations": {
             "production": {
@@ -195,10 +180,7 @@
               "apps/electron/tsconfig.app.json",
               "apps/electron/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/electron/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/electron/**/*"]
           }
         },
         "test": {
@@ -224,10 +206,7 @@
               "libs/data/tsconfig.lib.json",
               "libs/data/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/data/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/data/**/*"]
           }
         },
         "test": {
@@ -253,10 +232,7 @@
               "libs/communication/tsconfig.lib.json",
               "libs/communication/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/communication/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/communication/**/*"]
           }
         },
         "test": {
@@ -266,6 +242,38 @@
             "tsConfig": "libs/communication/tsconfig.spec.json",
             "passWithNoTests": true,
             "setupFile": "libs/communication/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "servers": {
+      "projectType": "library",
+      "root": "libs/servers",
+      "sourceRoot": "libs/servers/src",
+      "prefix": "rf-manager",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/servers/tsconfig.lib.json",
+              "libs/servers/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/servers/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/servers/jest.config.js",
+            "tsConfig": "libs/servers/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/servers/src/test-setup.ts"
           }
         }
       },

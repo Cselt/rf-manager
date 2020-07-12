@@ -17,7 +17,8 @@
     "baseUrl": ".",
     "paths": {
       "@rf-manager/data": ["libs/data/src/index.ts"],
-      "@rf-manager/communication": ["libs/communication/src/index.ts"]
+      "@rf-manager/communication": ["libs/communication/src/index.ts"],
+      "@rf-manager/servers": ["libs/servers/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
