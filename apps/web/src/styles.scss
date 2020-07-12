@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+
+$fontFamilyPrimary: "Roboto";
+$fontFamilySecondary: "Open Sans";
+$fontFamily: Roboto, sans-serif;
+$fontFamily: Roboto, sans-serif;
+$fontSizeDefault: 15px;
+$fontLineHeight: normal;
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: subpixel-antialiased;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-family: $fontFamily;
+  font-size: $fontSizeDefault;
+  line-height: $fontLineHeight;
+  -webkit-font-smoothing: antialiased; /* To Stop Font Face Looking Bold on Mac Browsers */
+}

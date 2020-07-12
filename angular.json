@@ -10,7 +10,7 @@
       },
       "root": "apps/web",
       "sourceRoot": "apps/web/src",
-      "prefix": "rf-manager",
+      "prefix": "rf",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -223,7 +223,7 @@
       "projectType": "library",
       "root": "libs/communication",
       "sourceRoot": "libs/communication/src",
-      "prefix": "rf-manager",
+      "prefix": "rf",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -255,7 +255,7 @@
       "projectType": "library",
       "root": "libs/servers",
       "sourceRoot": "libs/servers/src",
-      "prefix": "rf-manager",
+      "prefix": "rf",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -288,6 +288,12 @@
     "defaultCollection": "@nrwl/angular"
   },
   "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss",
+      "changeDetection": "OnPush",
+      "inlineStyle": true,
+      "spec": false
+    },
     "@nrwl/angular:application": {
       "unitTestRunner": "jest",
       "e2eTestRunner": "cypress"
