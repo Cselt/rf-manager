@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IpcRenderer } from 'electron';
 import { Observable, Subscriber } from 'rxjs';
-import { IpcCommands, RfServer } from '@rf-manager/data';
+import { IpcCommands } from '@rf-manager/data';
 
 @Injectable({
   providedIn: 'root'
@@ -22,20 +22,17 @@ export class ElectronService {
     }
   }
 
-  getServersList(): Observable<RfServer[]> {
-    console.log("get servers list");
-    return new Observable((subscriber: Subscriber<RfServer[]>) => {
-      this._ipc.on("servers-list", (event: Event, servers: RfServer[]) => {
-        console.log("servers ", servers);
-        subscriber.next(servers);
+  getData<T>(reqCommand: IpcCommands, resCommand: IpcCommands, data?: any): Observable<T> {
+    return new Observable<T>((subscriber: Subscriber<T>) => {
+      this._ipc.on(resCommand, (event: Event, arg: T) => {
+        subscriber.next(arg);
         subscriber.complete();
       });
-
-      this._ipc.send('get-servers-list');
+      this._ipc.send(reqCommand, data);
     });
   }
 
-  getAppVersion(): string {
-    return this._ipc.sendSync(IpcCommands.GetAppVersion);
+  getDataSync<T>(command: IpcCommands, data?: any): T {
+    return this._ipc.sendSync(command, data);
   }
 }

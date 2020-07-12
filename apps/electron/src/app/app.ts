@@ -1,4 +1,4 @@
-import { BrowserWindow, shell, screen } from 'electron';
+import { BrowserWindow, shell, screen, session } from 'electron';
 import { rendererAppName, rendererAppPort } from './constants';
 import { environment } from '../environments/environment';
 import { join } from 'path';
@@ -93,10 +93,14 @@ export default class App {
     });
   }
 
-  private static loadMainWindow() {
+  private static async loadMainWindow() {
     // load the index.html of the app.
     if (!App.application.isPackaged) {
-      App.mainWindow.loadURL(`http://localhost:${rendererAppPort}`);
+      const extensionHome: string = join(App.application.getPath('appData'), '..',
+        'Local', 'Google', 'Chrome', 'User data', 'Default',
+        'Extensions', 'lmhkpmbekcpmknklioeibfkpmmfibljd', '2.17.0_0');
+      await session.defaultSession.loadExtension(extensionHome);
+      await App.mainWindow.loadURL(`http://localhost:${rendererAppPort}`);
 
       App.mainWindow.webContents.openDevTools();
     } else {

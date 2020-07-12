@@ -5,6 +5,8 @@
 
 import { app, ipcMain, IpcMainEvent } from 'electron';
 import { environment } from '../../environments/environment';
+import { IpcCommands, RfServer } from '@rf-manager/data';
+import { RfService } from '../services/rf.service';
 
 export default class ElectronEvents {
   static bootstrapElectronEvents(): Electron.IpcMain {
@@ -17,6 +19,12 @@ ipcMain.on('get-app-version', (event: IpcMainEvent) => {
   console.log(`Fetching application version... [v${environment.version}]`);
 
   event.returnValue = environment.version;
+});
+
+ipcMain.on(IpcCommands.GetServersList, async (event: IpcMainEvent) => {
+  const service: RfService = RfService.getInstance();
+  const servers: RfServer[] = await service.getServersList();
+  event.sender.send(IpcCommands.ServersList, servers);
 });
 
 // Handle App termination
